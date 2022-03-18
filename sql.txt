@@ -1,0 +1,34 @@
+CREATE DATABASE "Produto"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+-----
+
+CREATE SCHEMA IF NOT EXISTS public
+    AUTHORIZATION postgres;
+
+COMMENT ON SCHEMA public
+    IS 'standard public schema';
+
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+GRANT ALL ON SCHEMA public TO postgres;
+
+------
+
+CREATE TABLE IF NOT EXISTS public.produto
+(
+    id integer NOT NULL DEFAULT nextval('produto_id_seq'::regclass),
+    descricao character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT produto_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.produto
+    OWNER to postgres;
