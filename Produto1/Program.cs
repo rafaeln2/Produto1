@@ -77,7 +77,7 @@ namespace Produto1
                     try
                     {
                         produtoController.deletaProduto(); ;
-                        Console.WriteLine("Inserido com sucesso");
+                        Console.WriteLine("Deletado com sucesso");
                         Console.WriteLine(" ");
                     }
                     catch (Exception e)
