@@ -14,23 +14,19 @@ namespace Produto1
         static void Main(string[] args)
         {
             int operacaoDesejada;
-            Produto produto;
-
+            
             ProdutoController produtoController = new ProdutoController();
             while (true) 
             {
-                List<Produto> listaProdutos = produtoController.GetAllRecords();
-
-
-                foreach (Produto produtos in listaProdutos)
+                
+                foreach (Produto produtos in produtoController.listaProdutos)
                 {
                     Console.Write(produtos.id + " ");
                     Console.WriteLine(produtos.descricao);
                        
                 }
                 Console.WriteLine(" ");
-
-                produto = new Produto();
+                
                 Console.WriteLine("Qual operação deseja fazer? ");
                 Console.WriteLine("0 - Criar produto | 1 - Atualizar Produto | 2 - Deletar Produto");
 
@@ -39,11 +35,11 @@ namespace Produto1
                 if (operacaoDesejada == 0)
                 {
                     Console.Write("Insira a Descricao do Produto: ");
-                    produto.descricao = Console.ReadLine();
+                    produtoController.produto.descricao = Console.ReadLine();
 
                     try
                     {
-                        produtoController.InsertRecord(produto);
+                        produtoController.salvaProduto();
                         Console.WriteLine("Inserido com sucesso");
                         Console.WriteLine(" ");
                     }
@@ -56,14 +52,14 @@ namespace Produto1
                 else if (operacaoDesejada == 1)
                 {
                     Console.WriteLine("Insira o Id do produto para ser alterado: ");
-                    produto.id = Convert.ToInt32(Console.ReadLine());
+                    produtoController.produto.id = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine("Insira a Descricao voce quer inserir: ");
-                    produto.descricao = Console.ReadLine();
+                    produtoController.produto.descricao = Console.ReadLine();
 
                     try
                     {
-                        produtoController.UpdateRecord(produto);
+                        produtoController.atualizaProduto();
                         Console.WriteLine("Atualizado com sucesso");
                         Console.WriteLine(" ");
                     }
@@ -76,11 +72,11 @@ namespace Produto1
                 else if (operacaoDesejada == 2)
                 {
                     Console.Write("Insira Id do produto para ser exluido: ");
-                    produto.id = Convert.ToInt32(Console.ReadLine());
+                    produtoController.produto.id = Convert.ToInt32(Console.ReadLine());
 
                     try
                     {
-                        produtoController.DeleteRecord(produto); ;
+                        produtoController.deletaProduto(); ;
                         Console.WriteLine("Inserido com sucesso");
                         Console.WriteLine(" ");
                     }
@@ -93,36 +89,5 @@ namespace Produto1
                 
             }
         }
-        //private static void TestConnection()
-        //{
-        //    using (NpgsqlConnection con = GetConnection())
-        //    {
-        //        con.Open();
-        //        if (con.State == System.Data.ConnectionState.Open)
-        //        {
-        //            Console.WriteLine("Conectado");
-        //        }
-        //    }
-        //}
-
-        //private static void InsertRecord()
-        //{
-        //    using (NpgsqlConnection con = GetConnection())
-        //    {
-        //        //string query = @"insert into public.Produto(Descricao) values('" + Produto.Descricao + "')";
-        //        string query = @"insert into public.Produto(Id,Descricao) values(1,'Produto1')";
-        //        NpgsqlCommand cmd = new NpgsqlCommand(query, con);
-        //        con.Open();
-        //        int n = cmd.ExecuteNonQuery();
-        //        if (n == 1)
-        //        {
-        //            Console.WriteLine("sucesso insert");
-        //        }
-        //    }
-        //}
-        //private static NpgsqlConnection GetConnection()
-        //{
-        //    return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=1234;Database=Produto;");
-        //}
     }
 }
