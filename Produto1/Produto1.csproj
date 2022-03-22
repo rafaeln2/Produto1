@@ -88,10 +88,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Produto\DAO\ProdutoDAO.cs" />
+    <Compile Include="Models\Produto\DAO\ProdutoDAO.cs" />
     <Compile Include="Controllers\Produto\ProdutoController.cs" />
-    <Compile Include="Controllers\Produto\Service\ProdutoService.cs" />
-    <Compile Include="Models\Produto\Produto.cs" />
+    <Compile Include="Models\Produto\Service\ProdutoService.cs" />
+    <Compile Include="Models\Produto\Entity\Produto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
